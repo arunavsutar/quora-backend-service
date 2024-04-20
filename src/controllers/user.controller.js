@@ -1,13 +1,22 @@
-const { StatusCodes } = require('http-status-codes');
+const { UserService } = require('../services');
+const { UserRepository } = require('../repositories');
 const NotImplemented = require('../errors/NotImplementedError');
+const { StatusCodes } = require('http-status-codes');
 
+const user = new UserService(new UserRepository);
 function ping(req, res) {
     return res.json({ message: "Ping back from User Controller." });
 }
 
-function addUser(req, res, next) {
+async function addUser(req, res, next) {
     try {
-        throw new NotImplemented("Add User");
+        const newUser = await user.createUser(req.body);
+        return res.status(StatusCodes.CREATED).json({
+            success: true,
+            message: "User Successfully Created.",
+            error: {},
+            data: newUser
+        });
     } catch (error) {
         next(error);
     }
