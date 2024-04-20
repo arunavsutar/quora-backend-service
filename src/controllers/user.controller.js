@@ -22,17 +22,29 @@ async function addUser(req, res, next) {
     }
 }
 
-function getUser(req, res, next) {
+async function getUser(req, res, next) {
     try {
-        throw new NotImplemented("Get User");
+        const user_data = await user.getUser(req.params.id)
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "User Retrieved Successfully.",
+            error: {},
+            data: user_data
+        })
     } catch (error) {
         next(error);
     }
 }
 
-function updateUser(req, res, next) {
+async function updateUser(req, res, next) {
     try {
-        throw new NotImplemented("Update User");
+        const updatedUser = await user.updateUser(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully updated the User.',
+            error: {},
+            data: updatedUser
+        });
     } catch (error) {
         next(error);
     }
