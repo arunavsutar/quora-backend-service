@@ -1,6 +1,5 @@
 const { UserService } = require('../services');
 const { UserRepository } = require('../repositories');
-const NotImplemented = require('../errors/NotImplementedError');
 const { StatusCodes } = require('http-status-codes');
 
 const user = new UserService(new UserRepository);
