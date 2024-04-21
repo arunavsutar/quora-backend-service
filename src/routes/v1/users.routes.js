@@ -7,6 +7,6 @@ userRouter.get('/ping', userController.ping);
 userRouter.post('/', userController.addUser);
 userRouter.get('/:id', userController.getUser);
 userRouter.put('/:id', userController.updateUser);
-userRouter.post('/:id/follow/:targeta_id', followController.followUser);
+userRouter.post('/:id/follow/:target_id', followController.followUser);
 
 module.exports = userRouter;
