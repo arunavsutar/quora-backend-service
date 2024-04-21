@@ -13,7 +13,11 @@ const answerSchema = new mongoose.Schema({
     user_id: {
         type: Number,
         required: [true, "user_id can not be Empty."]
-    }
+    },
+    liked_by: [{
+        type: Number,
+        required: [true, "User_id can not be empty"]
+    }]
 }, {
     timestamps: true
 })

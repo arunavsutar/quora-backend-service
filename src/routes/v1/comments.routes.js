@@ -5,6 +5,6 @@ const commentRouter = express.Router();
 
 commentRouter.get('/ping', commentController.ping);
 commentRouter.post('/:id/comments', commentController.commentAComment);
-commentRouter.post('/:id/likes', likeController.like);
+commentRouter.post('/:id/likes', likeController.likeAComment);
 
 module.exports = commentRouter;
