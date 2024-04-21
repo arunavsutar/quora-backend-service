@@ -1,20 +1,38 @@
 const NotImplemented = require("../errors/NotImplementedError");
+const { TopicService } = require("../services");
+const { TopicRepository } = require("../repositories");
+const { StatusCodes } = require('http-status-codes');
+
+const topic = new TopicService(new TopicRepository);
 
 function ping(req, res) {
     return res.json({ message: "Ping back from Topics Controller." });
 }
 
-function addTopic(req, res, next) {
+async function addTopic(req, res, next) {
     try {
-        throw new NotImplemented("Add Topic");
+        const newTopic = await topic.createTopic(req.body);
+        return res.status(StatusCodes.CREATED).json({
+            success: true,
+            message: "Topic added Succesfully.",
+            error: {},
+            data: newTopic
+        });
     } catch (error) {
+        console.log(error);
         next(error);
     }
 }
 
-function getTopics(req, res, next) {
+async function getTopics(req, res, next) {
     try {
-        throw new NotImplemented("Get Topics");
+        const topics = await topic.getTopics();
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: "Retrieved all Topics.",
+            error: {},
+            data: topics
+        });
     } catch (error) {
         next(error);
     }
