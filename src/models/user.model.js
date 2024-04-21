@@ -14,7 +14,11 @@ const userSchema = new mongoose.Schema({
     },
     bio: {
         type: String
-    }
+    },
+    followed_by:[{
+        type:Number,
+        required:[true,"User_id can not be empty"]
+    }]
 });
 
 const userModel = new mongoose.model('User', userSchema);
