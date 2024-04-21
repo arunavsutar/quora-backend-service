@@ -1,4 +1,9 @@
 const NotImplemented = require("../errors/NotImplementedError")
+const { AnswerService } = require("../services");
+const { AnswerRepository } = require("../repositories");
+const { StatusCodes } = require('http-status-codes');
+
+const Answer = new AnswerService(new AnswerRepository);
 
 function ping(req, res) {
     return res.json({
@@ -6,17 +11,29 @@ function ping(req, res) {
     })
 }
 
-function postAnswer(req, res, next) {
+async function postAnswer(req, res, next) {
     try {
-        throw new NotImplemented("Post a Answer");
+        const answer = await Answer.createAnswer(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully Added the Answer.',
+            error: {},
+            data: answer
+        });
     } catch (error) {
         next(error);
     }
 }
 
-function updateAnswer(req, res, next) {
+async function updateAnswer(req, res, next) {
     try {
-        throw new NotImplemented("Update a Answer");
+        const answer = await Answer.updateAnswer(req.params.id, req.body);
+        return res.status(StatusCodes.OK).json({
+            success: true,
+            message: 'Successfully updated the Answer.',
+            error: {},
+            data: answer
+        });
     } catch (error) {
         next(error);
     }
