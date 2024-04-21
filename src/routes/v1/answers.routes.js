@@ -6,6 +6,6 @@ const answerRouter = express.Router();
 answerRouter.get('/ping', answerController.ping);
 answerRouter.put('/:id', answerController.updateAnswer);
 answerRouter.post('/:id/comments', commentController.commentAAnswer);
-answerRouter.post('/:id/likes', likeController.like);
+answerRouter.post('/:id/likes', likeController.likeAAnswer);
 
 module.exports = answerRouter;

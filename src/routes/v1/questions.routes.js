@@ -7,6 +7,6 @@ questionRouter.get('/ping', questionController.ping);
 questionRouter.post('/', questionController.postQuestion);
 questionRouter.get('/search', questionController.getQuestions);
 questionRouter.post('/:id/answers', answerController.postAnswer);
-questionRouter.post('/:id/likes', likeController.like);
+questionRouter.post('/:id/likes', likeController.likeAQuestion);
 
 module.exports = questionRouter;

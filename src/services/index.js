@@ -4,4 +4,5 @@ module.exports = {
     QuestionService: require("./question.service"),
     AnswerService: require("./answer.service"),
     CommentService: require("./comment.service"),
+    LikeService: require("./like.service"),
 }
