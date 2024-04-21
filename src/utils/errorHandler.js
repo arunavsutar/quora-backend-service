@@ -11,7 +11,7 @@ function errorHandler(err, req, res, next) {
         });
     }
 
-
+    // console.log(err);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         success: false,
         message: "Something Went Wrong",
