@@ -10,7 +10,7 @@ class TopicRepository {
                 return created_topic;
             }
             else {
-                throw new NotImplemented("Topic Existss.");
+                throw new NotImplemented("Topic Existss. And it will be handled by Model layer.");
             }
         } catch (error) {
             console.log(error);
