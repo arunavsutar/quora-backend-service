@@ -1,9 +1,13 @@
 const NotFoundError = require("../errors/NotFoundError");
-const { Question, Answer, Comment } = require("../models");
+const { Question, Answer, Comment, User } = require("../models");
 class LikeRepository {
     async createLike(type, id, user_id) {
 
         try {
+            const user = await User.exist({ _id: user_id });
+            if (user == null) {
+                throw new NotFoundError("User", user_id);
+            }
             if (type == "question") {
                 const liked_data = await Question.findOneAndUpdate({ _id: id }, { $push: { liked_by: user_id } }, { new: true });
                 if (!liked_data) {

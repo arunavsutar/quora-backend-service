@@ -1,9 +1,13 @@
-const { Answer } = require('../models');
+const { Answer, Question } = require('../models');
 const NotFoundError = require('../errors/NotFoundError');
 
 class AnswerRepository {
     async createAnswer(q_id, answerData) {
         try {
+            const question = await Question.exist({ _id: q_id });
+            if (question == null) {
+                throw new NotFoundError("Question", q_id);
+            }
             const answer = await Answer.create({
                 question_id: q_id,
                 body: answerData.body,
